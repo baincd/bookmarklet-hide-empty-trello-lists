@@ -9,16 +9,21 @@ javascript: (function () {
         return false;
     }
 
-    function toggleListVisibility() {
+    function displayEmptyLists(displayEnabled) {
         let lists = document.getElementById('board').querySelectorAll('div.js-list');
 
         for (let i = 0; i < lists.length; i++) {
-            lists[i].style.display = (hasVisibleCards(lists[i]) ? 'inline-block' : 'none');
+            lists[i].style.display = (displayEnabled || hasVisibleCards(lists[i]) ? 'inline-block' : 'none');
         }
     };
 
-    toggleListVisibility();
-
-    setInterval(toggleListVisibility, 500);
+    if (window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL === undefined) {
+        displayEmptyLists(false);
+        window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL = setInterval(displayEmptyLists, 500);
+    } else {
+        clearInterval(window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL);
+        window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL = undefined;
+        displayEmptyLists(true);
+    }
 
 })();
