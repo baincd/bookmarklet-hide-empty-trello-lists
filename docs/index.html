@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>Hide Empty Trello Lists Bookmarklet</title>
+		<style>
+			.button { /* Courtesy https://stackoverflow.com/a/710108/4764903 */
+				text-decoration: none;
+				background-color: #EEEEEE;
+				color: #333333;
+				padding: 2px 6px 2px 6px;
+				border-top: 1px solid #CCCCCC;
+				border-right: 1px solid #333333;
+				border-bottom: 1px solid #333333;
+				border-left: 1px solid #CCCCCC;
+			}
+			.responsive { /* Courtesy https://www.w3schools.com/howto/howto_css_image_responsive.asp */
+				max-width: 100%;
+				height: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Hide Empty Trello Lists Bookmarklet</h1>
+		
+		A <a href="https://bookmarklets.org/what-is-a-bookmarklet/">bookmarklet</a> that toggles hiding and showing empty lists on Trello boards.<p/>
+
+		<img class="responsive" src="example-usage.png" />
+
+		<h4>Usage</h4>
+		Follow the instructions below to add the bookmarklet to your browser.<p/>
+
+		Click bookmark to hide empty Trello lists on current tab (including filtered lists).  Click again for default Trello behavior.<p/>
+		
+		Bookmarklet limitations: Only works on currently open browser tab when open to Trello.  Refreshing tab, closing tab, or navigating to another site will reset to the default Trello behavior.
+
+		<h4>Compatibility</h4>
+
+		Tested in Firefox and Chrome desktop browsers.  May work on other browsers as well.
+
+		<h2>Install</h2>
+
+		Drag and drop the following button to your browser's Bookmarks Bar: <p/>
+
+		<!-- 
+			# To Update bookmarklet link with Hide-Empty-Trello-Lists-Bookmarklet.js source
+			1. Run the following command to merge source into a single line
+				cat Hide-Empty-Trello-Lists-Bookmarklet.js | tr -s [:space:] ' ' 
+			2. Update **both** links below
+		-->
+		<a class="button" href="javascript: (function () { function hasVisibleCards(list) { let listCards = list.querySelectorAll('a.list-card'); for (let i = 0; i < listCards.length; i++) { if (!listCards[i].classList.contains('hide')) { return true; } } return false; } function displayEmptyLists(displayEnabled) { let lists = document.getElementById('board').querySelectorAll('div.js-list'); for (let i = 0; i < lists.length; i++) { lists[i].style.display = (displayEnabled || hasVisibleCards(lists[i]) ? 'inline-block' : 'none'); } }; if (window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL === undefined) { displayEmptyLists(false); window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL = setInterval(displayEmptyLists, 500); } else { clearInterval(window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL); window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL = undefined; displayEmptyLists(true); } })();">
+			Hide Empty Trello Lists
+		</a> <p/>
+
+		<h4>Alternate install method</h4>
+		<ol>
+			<li>Right click on button above and copy link</li>
+			<li>Create a new bookmark in your browser using the copied link as the URL</li>
+		</ol>
+
+		<h2>Source Code</h2>
+		
+		The source code for the bookmarklet can be found <a href="https://github.com/baincd/bookmarklet-hide-empty-trello-lists/blob/main/Hide-Empty-Trello-Lists-Bookmarklet.js">here</a>.
+	</body>
+</html>
+
