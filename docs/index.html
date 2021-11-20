@@ -46,13 +46,7 @@
 
 		Drag and drop the following button to your browser's Bookmarks Bar: <p/>
 
-		<!-- 
-			# To Update bookmarklet link with Hide-Empty-Trello-Lists-Bookmarklet.js source
-			1. Run the following command to merge source into a single line
-				cat Hide-Empty-Trello-Lists-Bookmarklet.js | tr -s [:space:] ' ' 
-			2. Update **both** links below
-		-->
-		<a class="button" href="javascript: (function () { function hasVisibleCards(list) { let listCards = list.querySelectorAll('a.list-card'); for (let i = 0; i < listCards.length; i++) { if (!listCards[i].classList.contains('hide')) { return true; } } return false; } function displayEmptyLists(displayEnabled) { let lists = document.getElementById('board').querySelectorAll('div.js-list'); for (let i = 0; i < lists.length; i++) { lists[i].style.display = (displayEnabled || hasVisibleCards(lists[i]) ? 'inline-block' : 'none'); } }; if (window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL === undefined) { displayEmptyLists(false); window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL = setInterval(displayEmptyLists, 500); } else { clearInterval(window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL); window.HIDE_EMPTY_TRELLO_LISTS_BOOKMARKLET_INTERVAL = undefined; displayEmptyLists(true); } })();">
+		<!-- Bookmarklet should be updated via `update-doc.sh` -->
 			Hide Empty Trello Lists
 		</a> <p/>
 

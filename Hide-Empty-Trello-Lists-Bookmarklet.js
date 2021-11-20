@@ -1,3 +1,8 @@
+/* 
+ * After making changes, run `./update-doc.sh` to update the documentation (docs/index.html)
+ * 
+ * Note: Do not use double-quotes anywhere within this script
+ */
 javascript: (function () {
     function hasVisibleCards(list) {
         let listCards = list.querySelectorAll('a.list-card');
