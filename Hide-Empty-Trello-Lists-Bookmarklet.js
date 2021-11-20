@@ -14,11 +14,24 @@ javascript: (function () {
         return false;
     }
 
-    function displayEmptyLists(displayEnabled) {
+    function isResizeElement(el) {
+        return (el && el.classList && el.classList.contains('resize-element'));
+    }
+
+    function displayEmptyLists(displayEmptyListsEnabled) {
         let lists = document.getElementById('board').querySelectorAll('div.js-list');
 
         for (let i = 0; i < lists.length; i++) {
-            lists[i].style.display = (displayEnabled || hasVisibleCards(lists[i]) ? 'inline-block' : 'none');
+            const list = lists[i];
+            const listSibling = list.nextSibling;
+            const displayValue = (displayEmptyListsEnabled || hasVisibleCards(lists[i]) ? 'inline-block' : 'none');
+
+            list.style.display = displayValue;
+
+            /* Resize Element may be added by Trello Super Powers browser extension */
+            if (isResizeElement(listSibling)) {
+                listSibling.style.display = displayValue;
+            }
         }
     };
 
