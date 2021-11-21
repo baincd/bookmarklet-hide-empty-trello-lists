@@ -1,8 +1,11 @@
-/* 
- * After making changes, run `./update-doc.sh` to update the documentation (docs/index.html)
- * 
- * Note: Do not use double-quotes anywhere within this script
- */
+// After making changes, run `./update-doc.sh` to update the documentation (docs/index.html)
+// with this script minified.
+// 
+// Important Notes: 
+//   1. Do not use double-quotes anywhere within this script
+//   2. // comments will be removed
+//   3. /* */ comments will NOT be removed
+//   4. End all statements with ;
 javascript: (function () {
     /* Source: https://baincd.github.io/bookmarklet-hide-empty-trello-lists */
     function hasVisibleCards(list) {
@@ -29,7 +32,7 @@ javascript: (function () {
 
             list.style.display = displayValue;
 
-            /* Resize Element may be added by Trello Super Powers browser extension */
+            // Resize Element may be added by Trello Super Powers browser extension
             if (isResizeElement(listSibling)) {
                 listSibling.style.display = displayValue;
             }

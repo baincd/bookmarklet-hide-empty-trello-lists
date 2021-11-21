@@ -15,7 +15,7 @@ function f () {
   # Output index.html before 'href="javascript:'.  (last sed trims final newline)
   cat docs/index.html | sed -ne '0,/href="javascript:/p' | sed -re 's/(href=")javascript:.*$/\1/' | sed -z '$ s/\n$//' > $TMP_FILE_PATH
   # Output bookmarklet minified
-  cat $BOOKMARKET_PATH | sed -ne '/^javascript:/,//p' | tr -s [:space:] ' ' >> $TMP_FILE_PATH
+  cat $BOOKMARKET_PATH | sed -re 's/(^|;)\s*\/\/.*$//' | tr -s [:space:] ' ' | sed -e 's/^ //' -e 's/ $//' >> $TMP_FILE_PATH
   # Output index.html after bookmarklet (starting with '">')
   cat docs/index.html | sed -ne '/href="javascript:/,//p' | sed -re 's/^.*href="javascript:[^"]*//' >> $TMP_FILE_PATH
 
