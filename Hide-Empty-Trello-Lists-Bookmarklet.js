@@ -4,6 +4,7 @@
  * Note: Do not use double-quotes anywhere within this script
  */
 javascript: (function () {
+    /* Source: https://baincd.github.io/bookmarklet-hide-empty-trello-lists */
     function hasVisibleCards(list) {
         let listCards = list.querySelectorAll('a.list-card');
         for (let i = 0; i < listCards.length; i++) {
