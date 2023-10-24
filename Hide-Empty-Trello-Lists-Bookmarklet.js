@@ -9,9 +9,9 @@
 javascript: (function () {
     /* Source: https://baincd.github.io/bookmarklet-hide-empty-trello-lists */
     function hasVisibleCards(list) {
-        let listCards = list.querySelectorAll('a.list-card');
+        let listCards = list.querySelectorAll('li[data-testid=list-card]');
         for (let i = 0; i < listCards.length; i++) {
-            if (!listCards[i].classList.contains('hide')) {
+            if (!listCards[i].attributes['hidden']) {
                 return true;
             }
         }
@@ -23,7 +23,7 @@ javascript: (function () {
     }
 
     function displayEmptyLists(displayEmptyListsEnabled) {
-        let lists = document.getElementById('board').querySelectorAll('div.js-list');
+        let lists = document.getElementById('board').querySelectorAll('li[data-list-id]');
 
         for (let i = 0; i < lists.length; i++) {
             const list = lists[i];
